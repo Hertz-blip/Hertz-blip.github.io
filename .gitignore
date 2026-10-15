@@ -1,0 +1,8 @@
+# WebStorm
+.idea/
+
+# Wireframes and planning assets - not part of the published site
+*(wireframe).png
+
+# Resume PDF: held back until re-exported with the current email address
+assets/documents/

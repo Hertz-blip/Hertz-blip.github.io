@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA — VFX & Compositing &mdash; NOVA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/effects.css">
+
+</head>
+<body id="top">
+
+<!--Nav bar: NOVA logo top left, burger menu button top right-->
+<nav class="nav">
+  <a href="index.html" class="nav-logo"><span>NO</span><span>VA</span></a>
+  <div class="nav-links-desktop">
+    <a href="index.html#work">Work</a>
+    <a href="pages/about.html">About</a>
+    <a href="pages/contact.html">Contact</a>
+  </div>
+  <a href="pages/contact.html" class="nav-cta">Get in touch
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+  </a>
+  <button class="nav-burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!--Full screen menu, hidden until the burger button is clicked (see script.js)-->
+<div class="nav-mobile-panel">
+    <a href="index.html#work">Work</a>
+    <a href="pages/about.html">About</a>
+    <a href="pages/contact.html">Contact</a>
+</div>
+
+<!--Hero section: full bleed background video with the title over the top-->
+<header class="hero">
+  <video autoplay muted loop playsinline preload="metadata">
+    <source src="assets/media/spaceship/Spaceship-hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <div class="hero-eyebrow">VFX &amp; Compositing Reel</div>
+    <h1>Building worlds<br>frame by frame.</h1>
+    <p>Altus Schultz &mdash; visual effects, 3D, and compositing work. From simulation and rendering to beat-synced edits, built for the story to land.</p>
+  </div>
+  <!--Scroll down link, jumps straight to the work section below-->
+  <a href="#work" class="hero-scroll">Scroll</a>
+</header>
+
+<!--Work section: heading plus the project grid-->
+<section class="section" id="work">
+  <div class="section-head">
+    <h2>Selected Work</h2>
+    <div class="section-tag">11 Projects</div>
+  </div>
+
+  <!--Project grid: one tile per project, hover to play the preview video.
+      Tiles for Close Eyes, Heat Waves, Overthinker and Pain show a still
+      photo first and only swap to video on hover (see script.js)-->
+  <div class="work-grid">
+
+    <!--Sword in the Stone-->
+    <a class="work-card reveal" href="pages/sword-in-the-stone.html">
+      <video class="thumb-media" data-src="assets/media/sword-in-the-stone/Sword-in-the-stone.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="work-card-overlay">
+        <div class="work-card-tag">Blender</div>
+        <div class="work-card-title">Sword in the Stone</div>
+      </div>
+    </a>
+
+    <!--Monkey-->
+    <a class="work-card reveal" href="pages/monkey.html">
+      <video class="thumb-media" data-src="assets/media/monkey/Monkey.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="work-card-overlay">
+        <div class="work-card-tag">Blender</div>
+        <div class="work-card-title">Monkey</div>
+      </div>
+    </a>
+
+    <!--Spaceship-->
+    <a class="work-card reveal" href="pages/spaceship.html">
+      <video class="thumb-media" data-src="assets/media/spaceship/Spaceship-hero.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="work-card-overlay">
+        <div class="work-card-tag">Blender</div>
+        <div class="work-card-title">Spaceship</div>
+      </div>
+    </a>
+
+    <!--Floating Ball-->
+    <a class="work-card reveal" href="pages/floating-ball.html">
+      <video class="thumb-media" data-src="assets/media/floating-ball/Floating-Ball.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="work-card-overlay">
+        <div class="work-card-tag">Composite</div>
+        <div class="work-card-title">Floating Ball</div>
+      </div>
+    </a>
+
+    <!--Donut-->
+    <a class="work-card reveal" href="pages/donut.html">
+      <video class="thumb-media" data-src="assets/media/donut/Donut.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="work-card-overlay">
+        <div class="work-card-tag">Blender</div>
+        <div class="work-card-title">Donut</div>
+      </div>
+    </a>
+
+    <!--Close Eyes — DVRST: still photo first, video plays on hover-->
+    <a class="work-card reveal" href="pages/close-eyes-dvrst.html">
+      <img class="thumb-media thumb-still" src="assets/media/close-eyes-dvrst/Close-Eyes-DVRST.jpg" alt="" loading="lazy">
+      <video class="thumb-media" data-src="assets/media/close-eyes-dvrst/close-eyes-dvrst.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="work-card-overlay">
+        <div class="work-card-tag">Edit</div>
+        <div class="work-card-title">Close Eyes — DVRST</div>
+      </div>
+    </a>
+
+    <!--Heat Waves: still photo first, video plays on hover-->
+    <a class="work-card reveal" href="pages/heat-waves.html">
+      <img class="thumb-media thumb-still" src="assets/media/heat-waves/Heat-Waves-01.jpg" alt="" loading="lazy">
+      <video class="thumb-media" data-src="assets/media/heat-waves/Heat-waves.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="work-card-overlay">
+        <div class="work-card-tag">Edit</div>
+        <div class="work-card-title">Heat Waves</div>
+      </div>
+    </a>
+
+    <!--Overthinker: still photo first, video plays on hover-->
+    <a class="work-card reveal" href="pages/overthinker.html">
+      <img class="thumb-media thumb-still" src="assets/media/overthinker/Overthinker-01.jpg" alt="" loading="lazy">
+      <video class="thumb-media" data-src="assets/media/overthinker/Overthinker.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="work-card-overlay">
+        <div class="work-card-tag">Edit</div>
+        <div class="work-card-title">Overthinker</div>
+      </div>
+    </a>
+
+    <!--Pain: still photo first, video plays on hover-->
+    <a class="work-card reveal" href="pages/pain.html">
+      <img class="thumb-media thumb-still" src="assets/media/pain/Pain-01.jpg" alt="" loading="lazy">
+      <video class="thumb-media" data-src="assets/media/pain/Pain.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="work-card-overlay">
+        <div class="work-card-tag">Edit</div>
+        <div class="work-card-title">Pain</div>
+      </div>
+    </a>
+
+    <!--TikTok Video-->
+    <a class="work-card reveal" href="pages/tiktok-video.html">
+      <video class="thumb-media" data-src="assets/media/tiktok-video/TikTok.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="work-card-overlay">
+        <div class="work-card-tag">Edit</div>
+        <div class="work-card-title">TikTok Video</div>
+      </div>
+    </a>
+
+    <!--The Emirates Watch-->
+    <a class="work-card reveal" href="pages/emirates-watch.html">
+      <video class="thumb-media" data-src="assets/media/emirates-watch/Altus-compositor/Entity.mp4" muted loop playsinline preload="metadata"></video>
+      <div class="work-card-overlay">
+        <div class="work-card-tag">ARG / CIE153</div>
+        <div class="work-card-title">The Emirates Watch</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!--Marquee: auto-scrolling strip of skills, sits above the footer.
+    The list of spans is duplicated once so the scroll loops seamlessly-->
+<section class="marquee-section">
+  <div class="marquee-eyebrow">What I do</div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>3D Modeling</span><span class="slash">/</span>
+      <span>Simulation</span><span class="slash">/</span>
+      <span>Compositing</span><span class="slash">/</span>
+      <span>Beat-Synced Editing</span><span class="slash">/</span>
+      <span>Colour Grading</span><span class="slash">/</span>
+      <span>VFX</span><span class="slash">/</span>
+      <span>3D Modeling</span><span class="slash">/</span>
+      <span>Simulation</span><span class="slash">/</span>
+      <span>Compositing</span><span class="slash">/</span>
+      <span>Beat-Synced Editing</span><span class="slash">/</span>
+      <span>Colour Grading</span><span class="slash">/</span>
+      <span>VFX</span><span class="slash">/</span>
+    </div>
+  </div>
+</section>
+
+<!--Footer: shown on every page. Headline + email link, contact details,
+    social icons, then the copyright line with the back to top link-->
+<footer class="footer">
+  <div class="footer-top">
+    <h2>Let's build<br>something.</h2>
+    <div class="footer-contact-block">
+      <!--Email, same on every page-->
+      <div class="footer-contact">
+        <a href="https://mail.google.com/mail/?view=cm&amp;to=altuswork8@gmail.com">altuswork8@gmail.com</a>
+      </div>
+      <!--Social icon circles: LinkedIn, Instagram, YouTube-->
+      <div class="socials">
+      <a href="https://www.linkedin.com/in/altus-schultz-65b07b365/" aria-label="LinkedIn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.75h4V23h-4V8.75zM8.5 8.75h3.83v1.96h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.5c0-1.55-.03-3.55-2.17-3.55-2.18 0-2.51 1.7-2.51 3.44V23h-4V8.75z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/hertzz.iwnl/" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.27-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.02-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92 1.27-.06 1.65-.07 4.85-.07zm0 5.35a4.49 4.49 0 1 0 0 8.98 4.49 4.49 0 0 0 0-8.98zm0 7.4a2.91 2.91 0 1 1 0-5.82 2.91 2.91 0 0 1 0 5.82zm5.73-7.58a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@altumisprime" aria-label="YouTube" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.56A3.02 3.02 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14C4.49 20.5 12 20.5 12 20.5s7.51 0 9.38-.56a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.6 15.6V8.4l6.4 3.6-6.4 3.6z"/></svg>
+      </a>
+    </div>
+    </div>
+  </div>
+  <!--Copyright line + back to top link, same on every page-->
+  <div class="footer-bottom">
+    <span>NOVA &mdash; Altus Schultz</span>
+    <a href="#top" class="back-to-top">Back to top &uarr;</a>
+    <div class="footer-egg-group">
+      <span>VFX &amp; Compositing</span>
+      <button class="egg-toggle" aria-label="I wonder what this does">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

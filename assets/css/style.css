@@ -1,0 +1,1057 @@
+/* ============================================
+   NOVA — Core Styles
+   Base/reset, layout, nav, hero, work grid,
+   about page, lightbox, contact form, marquee,
+   custom cursor.
+   ============================================ */
+
+/* ============================================
+   NOVA — VFX / Compositing Portfolio
+   Design system: viewport-grade HUD aesthetic
+   grounded in Blender's render viewport
+   ============================================ */
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: local('Space Grotesk');
+}
+
+:root {
+  /* Color: dark viewport grey base, blue accent, cool desaturated
+     blue-grey for structural/secondary UI */
+  --bg: #131315;
+  --bg-raised: #1a1a1d;
+  --line: #2b2b2f;
+  --line-strong: #3a3a3f;
+  --text: #ECEAE4;
+  --text-dim: #8b8b8f;
+  --accent: #7cd4ff;
+  --accent-dim: #3f6b7a;
+  --viewport-blue: #4C5A63;
+
+  --font-display: 'Space Grotesk', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  --nav-h: 72px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+img, video { display: block; max-width: 100%; }
+
+::selection { background: var(--accent); color: #0d0d0e; }
+
+/* ---------- Viewport reticle (signature element) ----------
+   Thin corner brackets that frame hero/media, echoing a 3D
+   viewport / camera gate. Applied via .reticle wrapper. */
+.reticle {
+  position: relative;
+}
+.reticle::before,
+.reticle::after,
+.reticle .rb1,
+.reticle .rb2 {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--accent);
+  opacity: 0;
+  transition: opacity .35s ease, transform .35s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+.reticle::before { top: -1px; left: -1px; border-right: none; border-bottom: none; transform: translate(6px, 6px); }
+.reticle::after { top: -1px; right: -1px; border-left: none; border-bottom: none; transform: translate(-6px, 6px); }
+.reticle .rb1 { bottom: -1px; left: -1px; border-right: none; border-top: none; transform: translate(6px, -6px); }
+.reticle .rb2 { bottom: -1px; right: -1px; border-left: none; border-top: none; transform: translate(-6px, -6px); }
+.reticle:hover::before, .reticle:hover::after,
+.reticle:hover .rb1, .reticle:hover .rb2,
+.reticle:focus-within::before, .reticle:focus-within::after,
+.reticle:focus-within .rb1, .reticle:focus-within .rb2 {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* ---------- Nav ---------- */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  z-index: 100;
+  background: linear-gradient(to bottom, rgba(19,19,21,0.92), rgba(19,19,21,0));
+  backdrop-filter: blur(6px);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  display: flex;
+}
+.nav-logo span:first-child { color: var(--text); }
+.nav-logo span:last-child { color: var(--accent); }
+
+/* ---------- Desktop nav links + CTA (hidden on mobile, burger takes over) ---------- */
+.nav-links-desktop {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  /* Centered in the nav bar itself (not just flex-distributed between the
+     logo and CTA), so it stays visually centered regardless of how wide
+     either of those neighbors are. */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.nav-links-desktop a {
+  color: var(--text-dim);
+  transition: color .2s ease;
+}
+.nav-links-desktop a:hover,
+.nav-links-desktop a:focus-visible {
+  color: var(--text);
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--text);
+  color: var(--bg);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  transition: opacity .2s ease;
+}
+.nav-cta:hover,
+.nav-cta:focus-visible {
+  opacity: 0.85;
+}
+.nav-cta svg {
+  width: 14px;
+  height: 14px;
+}
+
+@media (max-width: 780px) {
+  .nav-links-desktop,
+  .nav-cta {
+    display: none;
+  }
+}
+
+.nav-burger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 28px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: relative;
+  z-index: 210;
+}
+.nav-burger span { display: block; height: 2px; background: var(--text); transition: transform .25s ease, opacity .25s ease; }
+
+@media (min-width: 781px) {
+  .nav-burger {
+    display: none;
+  }
+}
+
+/* burger -> x animation, toggled via the "open" class on the button itself */
+.nav-burger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-burger.open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-burger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-mobile-panel {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 32px;
+  gap: 22px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.97);
+  transition: opacity .35s ease, transform .35s ease, visibility .35s;
+  pointer-events: none;
+}
+.nav-mobile-panel.open {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  pointer-events: auto;
+}
+.nav-mobile-panel a {
+  font-family: var(--font-display);
+  font-size: 32px;
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .35s ease, transform .35s ease, color .2s ease;
+}
+.nav-mobile-panel.open a {
+  opacity: 1;
+  transform: translateY(0);
+}
+.nav-mobile-panel a:nth-child(1) { transition-delay: .08s; }
+.nav-mobile-panel a:nth-child(2) { transition-delay: .14s; }
+.nav-mobile-panel a:nth-child(3) { transition-delay: .2s; }
+.nav-mobile-panel a:hover,
+.nav-mobile-panel a:focus-visible {
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-mobile-panel,
+  .nav-mobile-panel a {
+    transition: none !important;
+  }
+}
+
+/* ---------- Hero (home) ---------- */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 560px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.hero video, .hero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.85) brightness(0.6);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(19,19,21,0.15) 0%, rgba(19,19,21,0.35) 55%, rgba(19,19,21,0.95) 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 32px 64px;
+  max-width: 980px;
+}
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-eyebrow::before {
+  content: "";
+  width: 8px; height: 8px;
+  background: var(--accent);
+  display: inline-block;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(42px, 8vw, 104px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+.hero p {
+  margin-top: 22px;
+  max-width: 560px;
+  color: var(--text-dim);
+  font-size: 17px;
+}
+.hero-scroll {
+  position: absolute;
+  bottom: 28px; left: 32px;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color .2s ease;
+}
+.hero-scroll:hover,
+.hero-scroll:focus-visible {
+  color: var(--accent);
+}
+.hero-scroll::after {
+  content: "";
+  width: 1px; height: 34px;
+  background: var(--line-strong);
+  display: block;
+}
+
+/* ---------- Section shell ---------- */
+.section { padding: 96px 32px; max-width: 1400px; margin: 0 auto; }
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 20px;
+}
+.section-head h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 44px);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+.section-tag {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---------- Work grid (hover-play video grid) ---------- */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--line);
+  perspective: 900px;
+}
+@media (max-width: 980px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .work-grid { grid-template-columns: 1fr; } }
+
+.work-card {
+  background: var(--bg);
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  display: block;
+  cursor: pointer;
+  content-visibility: auto;
+  contain-intrinsic-size: 400px 500px;
+  transform-style: preserve-3d;
+  transition: transform .15s ease-out;
+  will-change: transform;
+}
+.work-card .thumb-media {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease, filter .4s ease;
+  filter: grayscale(0.35) brightness(0.72);
+}
+.work-card:hover .thumb-media {
+  transform: scale(1.045);
+  filter: grayscale(0) brightness(0.9);
+}
+
+/* Tiles with both a still (.thumb-still) and a video: show the still
+   by default, swap to the video only while "hovering" (toggled by JS
+   on mouseenter/focus, see script.js) */
+.work-card .thumb-still ~ video.thumb-media {
+  opacity: 0;
+  transition: opacity .35s ease, transform .6s ease, filter .4s ease;
+}
+.work-card.hovering .thumb-still ~ video.thumb-media {
+  opacity: 1;
+}
+.work-card.hovering .thumb-still {
+  opacity: 0;
+}
+.work-card-overlay {
+  position: absolute; inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  background: linear-gradient(180deg, transparent 40%, rgba(10,10,11,0.88) 100%);
+}
+.work-card-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .3s ease, transform .3s ease;
+}
+.work-card:hover .work-card-tag { opacity: 1; transform: translateY(0); }
+.work-card-title {
+  font-family: var(--font-display);
+  font-size: 21px;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- About / split logo ---------- */
+.about-block {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 64px;
+  align-items: start;
+}
+@media (max-width: 860px) { .about-block { grid-template-columns: 1fr; } }
+.split-logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(56px, 9vw, 120px);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+.split-logo span:first-child { color: var(--text); display: block; }
+.split-logo span:last-child { color: var(--accent); display: block; -webkit-text-stroke: 1px var(--accent); }
+.about-text p { color: var(--text-dim); margin-bottom: 18px; max-width: 62ch; }
+.about-text p:last-child { margin-bottom: 0; }
+
+/* ---------- Project page ---------- */
+.project-hero {
+  padding: calc(var(--nav-h) + 56px) 32px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--line);
+}
+.project-meta {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+}
+.project-meta span { display: flex; align-items: center; gap: 8px; }
+.project-meta span::before { content: "//"; color: var(--accent); }
+.project-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 76px);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  margin-bottom: 28px;
+}
+.project-desc {
+  max-width: 72ch;
+  color: var(--text-dim);
+  font-size: 18px;
+  line-height: 1.7;
+}
+.project-desc strong { color: var(--text); font-weight: 500; }
+
+.project-media {
+  max-width: 1100px;
+  margin: 56px auto 0;
+  padding: 0 32px 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.media-frame {
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+  padding: 10px;
+}
+.media-frame video, .media-frame img {
+  display: block;
+  max-width: 100%;
+  max-height: 75vh;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+}
+.media-caption {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+  margin-top: 12px;
+  padding: 0 2px;
+}
+
+.media-subhead {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 8px 0 -8px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.image-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.image-row .media-frame { padding: 8px; }
+.image-row .media-frame img { max-height: 50vh; }
+
+.credits {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 2;
+  margin-top: 8px;
+}
+.credits strong { color: var(--text); }
+
+.project-nav-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.project-nav-footer a { color: var(--text-dim); transition: color .2s ease; }
+.project-nav-footer a:hover { color: var(--accent); }
+
+/* ---------- Contact / footer ---------- */
+.footer {
+  padding: 80px 32px 40px;
+  border-top: 1px solid var(--line);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+.footer h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 6vw, 64px);
+  text-transform: uppercase;
+}
+.contact-link {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: 1px solid var(--line-strong);
+  padding: 14px 22px;
+  transition: border-color .2s ease, color .2s ease;
+}
+.contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+/* email, sits next to the social icons in footer-top */
+.footer-contact-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+}
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.footer-contact a { transition: color .2s ease; }
+.footer-contact a:hover,
+.footer-contact a:focus-visible { color: var(--accent); }
+
+/* social icon circles, replaces the "Get in touch" button in footer-top */
+.socials {
+  display: flex;
+  gap: 16px;
+}
+.socials a {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.socials a:hover,
+.socials a:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+.socials svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--text);
+}
+
+.footer-bottom {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.back-to-top {
+  transition: color .2s ease;
+  /* Centered in the row itself, not just flex-distributed between its
+     neighbors, so it stays visually centered regardless of how wide the
+     left/right groups are. */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  color: var(--accent);
+}
+.footer-egg-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+@media (max-width: 600px) {
+  .footer-contact-block,
+  .footer-contact {
+    align-items: flex-start;
+  }
+  /* Absolute centering doesn't play nice once the row wraps to multiple
+     lines on narrow screens, so drop back to normal document flow and
+     stack everything instead. */
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .back-to-top {
+    position: static;
+    transform: none;
+  }
+}
+
+/* ---------- Utility ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+}
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ============================================
+   About page — bio, how I work steps,
+   stat counters, why me section
+   ============================================ */
+
+.about-header {
+  padding: calc(var(--nav-h) + 64px) 32px 0;
+  text-align: center;
+}
+
+.about-header h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 5vw, 40px);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Bio ---------- */
+.bio {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 48px 32px 0;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+
+/* ============================================
+   Lightbox — click a project photo to enlarge it.
+   Overlay is injected by script.js on page load.
+   ============================================ */
+.media-frame img {
+  cursor: zoom-in;
+}
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(8, 8, 9, 0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+.lightbox-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+.lightbox-overlay img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-raised);
+  transform: scale(0.96);
+  transition: transform .3s ease;
+}
+.lightbox-overlay.open img {
+  transform: scale(1);
+}
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color .2s ease, color .2s ease;
+}
+.lightbox-close:hover,
+.lightbox-close:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox-overlay,
+  .lightbox-overlay img {
+    transition: none !important;
+  }
+}
+
+
+/* ============================================
+   Contact form
+   ============================================ */
+.contact-form {
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-row label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.form-row input,
+.form-row textarea {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 12px 14px;
+  resize: vertical;
+  transition: border-color .2s ease;
+}
+
+.form-row input:focus,
+.form-row textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.btn-primary {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: var(--accent);
+  color: var(--bg);
+  border: 1px solid var(--accent);
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: opacity .2s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  opacity: 0.85;
+}
+
+.form-note {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+
+/* ============================================
+   Marquee ticker — auto-scrolling strip of
+   skills/services, sits above the footer
+   ============================================ */
+.marquee-section {
+  padding: 56px 0 72px;
+  border-top: 1px solid var(--line);
+}
+
+.marquee-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 32px 24px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.marquee-eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  display: inline-block;
+}
+
+.marquee {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: 28px;
+  animation: marquee-scroll 22s linear infinite;
+}
+
+.marquee-track span {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 5vw, 48px);
+  text-transform: uppercase;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.marquee-track .slash {
+  color: var(--accent);
+  font-weight: 400;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+
+/* ============================================
+   Custom cursor — a small reticle that follows
+   the mouse, echoing the corner-bracket motif
+   used on media frames and grid tiles. Desktop
+   with a real mouse only (see script.js); touch
+   devices and reduced-motion keep the native
+   cursor.
+   ============================================ */
+@media (hover: hover) and (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none;
+  }
+  /* Native <video controls> UI (play button, scrubber, etc.) lives in the
+     browser's own shadow DOM and ignores plain `cursor: none` on its
+     parent — it was showing the OS pointing-hand icon on hover instead of
+     letting our custom reticle take over. These pseudo-elements target
+     that internal control bar directly (Chrome/Edge/Safari; Firefox has
+     no equivalent hook, so it'll fall back to its native cursor there). */
+  body.custom-cursor-active video::-webkit-media-controls,
+  body.custom-cursor-active video::-webkit-media-controls-panel,
+  body.custom-cursor-active video::-webkit-media-controls-play-button,
+  body.custom-cursor-active video::-webkit-media-controls-timeline,
+  body.custom-cursor-active video::-webkit-media-controls-mute-button,
+  body.custom-cursor-active video::-webkit-media-controls-volume-slider,
+  body.custom-cursor-active video::-webkit-media-controls-fullscreen-button,
+  body.custom-cursor-active video::-webkit-media-controls-current-time-display,
+  body.custom-cursor-active video::-webkit-media-controls-time-remaining-display {
+    cursor: none !important;
+  }
+}
+
+.cursor-reticle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+  z-index: 999;
+  transform: translate(-50%, -50%);
+  transition: width .2s ease, height .2s ease, opacity .2s ease;
+  opacity: 0;
+}
+.cursor-reticle.visible { opacity: 1; }
+
+.cursor-reticle .dot {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 4px; height: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-reticle .corner {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-color: var(--accent);
+  transition: opacity .2s ease;
+}
+.cursor-reticle .corner.tl { top: 0; left: 0; border-top: 1.5px solid; border-left: 1.5px solid; }
+.cursor-reticle .corner.tr { top: 0; right: 0; border-top: 1.5px solid; border-right: 1.5px solid; }
+.cursor-reticle .corner.bl { bottom: 0; left: 0; border-bottom: 1.5px solid; border-left: 1.5px solid; }
+.cursor-reticle .corner.br { bottom: 0; right: 0; border-bottom: 1.5px solid; border-right: 1.5px solid; }
+
+/* grows and brightens over links, buttons, and other clickable elements */
+.cursor-reticle.hovering {
+  width: 42px;
+  height: 42px;
+}
+.cursor-reticle.hovering .dot {
+  opacity: 0;
+}
+
+/* ---------- Context icons: shown instead of the plain corner-frame when
+   hovering something with a more specific meaning (a video's native play
+   controls, or a text field). Each has three treatments — a clean default
+   version here, plus a hand-drawn version (sketch mode) and a corrupted
+   version (glitch mode) defined in effects.css. ---------- */
+.cursor-reticle .cursor-context-icon {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+}
+.cursor-reticle.hovering-video .icon-play,
+.cursor-reticle.hovering-text .icon-text {
+  display: flex;
+}
+.cursor-context-icon .icon-normal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cursor-context-icon .icon-sketch,
+.cursor-context-icon .icon-glitch {
+  display: none;
+}
+.cursor-context-icon svg {
+  width: 14px;
+  height: 14px;
+}
+

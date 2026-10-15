@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About &mdash; NOVA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&amp;family=Inter:wght@400;500&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/effects.css">
+
+</head>
+<body id="top">
+
+<!--Nav bar: NOVA logo top left, burger menu button top right-->
+<nav class="nav">
+    <a href="../index.html" class="nav-logo"><span>NO</span><span>VA</span></a>
+    <div class="nav-links-desktop">
+    <a href="../index.html#work">Work</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="contact.html" class="nav-cta">Get in touch
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+  </a>
+  <button class="nav-burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile-panel">
+      <a href="../index.html#work">Work</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- ==================== About header ==================== -->
+  <div class="about-header">
+    <h1>About</h1>
+  </div>
+
+  <!-- ==================== Bio: photo + intro text, fades in on scroll ==================== -->
+  <div class="bio reveal">
+    <img src="../assets/media/about-me/About-me-Image.png" alt="Altus Schultz" class="bio-photo">
+
+    <div class="bio-text">
+      <p>I'm passionate about visual effects and CG, focused on crafting content that captures attention and tells a compelling visual story. My goal is a career where creativity and technical skill meet, producing work that resonates with audiences and elevates the story being told.</p>
+      <p>I hold myself to a standard of consistency, attention to detail, and creativity on every project, because strong visuals, deliberate pacing, and tight audio sync are what turn a sequence into something that actually lands with a viewer. I take deadlines seriously, treat feedback as fuel for improvement, and keep sharpening both my skills and my workflow.</p>
+      <p>I'm driven to grow within the VFX industry and stay current with its tools and techniques. Long term, I want to become a versatile, adaptable VFX artist who contributes meaningfully to creative teams, consistently delivering work that enhances the viewer's experience and raises the bar on production quality.</p>
+
+      <div class="bio-actions">
+        <a href="contact.html" class="contact-link">Contact me</a>
+        <!--Resume link pulled 2026-10-15: PDF still carries the old email address.
+            Re-export with altuswork8@gmail.com, then uncomment this line.-->
+        <!--<a href="../assets/documents/altus-schultz-resume.pdf" class="contact-link" download>Resume</a>-->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== How I work: 4 steps, each fades up on scroll ==================== -->
+  <h2 class="section-heading">How I Work</h2>
+
+  <div class="steps">
+
+    <div class="step reveal">
+      <span class="step-number">01</span>
+      <div>
+        <p class="step-title">Concept</p>
+        <p class="step-desc">Block out the idea, references, and shot list before touching software.</p>
+        <p class="step-label">Step 1 of 4</p>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <span class="step-number">02</span>
+      <div>
+        <p class="step-title">Simulate</p>
+        <p class="step-desc">Build fluid, smoke, or destruction sims in Blender and tune the settings.</p>
+        <p class="step-label">Step 2 of 4</p>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <span class="step-number">03</span>
+      <div>
+        <p class="step-title">Composite</p>
+        <p class="step-desc">Layer passes, grade, and add post effects in DaVinci Resolve.</p>
+        <p class="step-label">Step 3 of 4</p>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <span class="step-number">04</span>
+      <div>
+        <p class="step-title">Render</p>
+        <p class="step-desc">Export, review, and deliver the final cut.</p>
+        <p class="step-label">Step 4 of 4</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== Stats: numbers count up from 0 on scroll, see script.js ==================== -->
+  <div class="stats reveal">
+
+    <div class="stat">
+      <span class="stat-number" data-count="5" data-suffix="+">0</span>
+      <p class="stat-label">Years in CS2</p>
+    </div>
+
+    <div class="stat">
+      <span class="stat-number" data-count="3">0</span>
+      <p class="stat-label">Certifications</p>
+    </div>
+
+    <div class="stat">
+      <span class="stat-number">SAE</span>
+      <p class="stat-label">Studying at SAE Dubai</p>
+    </div>
+
+    <div class="stat">
+      <span class="stat-number" data-count="10" data-suffix="+">0</span>
+      <p class="stat-label">Projects</p>
+    </div>
+
+  </div>
+
+  <!-- ==================== Why me: 6 point grid ==================== -->
+  <div class="why-me">
+    <h2 class="headline">Built with intent,<br>not templates.</h2>
+
+    <div class="why-grid">
+
+      <div class="why-item reveal">
+        <span class="why-number">01</span>
+        <h3>Own pipeline</h3>
+        <p>No page builders, no plugins doing the work. Every sim, comp, and line of code is mine.</p>
+      </div>
+
+      <div class="why-item reveal">
+        <span class="why-number">02</span>
+        <h3>Structured process</h3>
+        <p>Concept to simulate to composite to render, the same process on every project.</p>
+      </div>
+
+      <div class="why-item reveal">
+        <span class="why-number">03</span>
+        <h3>Cross-discipline</h3>
+        <p>VFX, web development, and cybersecurity certifications feeding one skill set.</p>
+      </div>
+
+      <div class="why-item reveal">
+        <span class="why-number">04</span>
+        <h3>Iterates fast</h3>
+        <p>Feedback gets acted on the same day, not the next sprint.</p>
+      </div>
+
+      <div class="why-item reveal">
+        <span class="why-number">05</span>
+        <h3>Reliable under pressure</h3>
+        <p>Years of competitive FPS have built the discipline to hit deadlines without cutting corners.</p>
+      </div>
+
+      <div class="why-item reveal">
+        <span class="why-number">06</span>
+        <h3>Always learning</h3>
+        <p>Actively studying VFX and virtual production, picking up new techniques every trimester.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!--Footer: same on every page, contact details, socials, back to top-->
+  <footer class="footer">
+    <div class="footer-top">
+      <h2>Let's build<br>something.</h2>
+      <div class="footer-contact-block">
+        <div class="footer-contact">
+          <a href="https://mail.google.com/mail/?view=cm&amp;to=altuswork8@gmail.com">altuswork8@gmail.com</a>
+        </div>
+        <div class="socials">
+        <a href="https://www.linkedin.com/in/altus-schultz-65b07b365/" aria-label="LinkedIn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.75h4V23h-4V8.75zM8.5 8.75h3.83v1.96h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.5c0-1.55-.03-3.55-2.17-3.55-2.18 0-2.51 1.7-2.51 3.44V23h-4V8.75z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/hertzz.iwnl/" aria-label="Instagram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.27-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.02-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92 1.27-.06 1.65-.07 4.85-.07zm0 5.35a4.49 4.49 0 1 0 0 8.98 4.49 4.49 0 0 0 0-8.98zm0 7.4a2.91 2.91 0 1 1 0-5.82 2.91 2.91 0 0 1 0 5.82zm5.73-7.58a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@altumisprime" aria-label="YouTube" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.51 3.5 12 3.5 12 3.5s-7.51 0-9.38.56A3.02 3.02 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14C4.49 20.5 12 20.5 12 20.5s7.51 0 9.38-.56a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.6 15.6V8.4l6.4 3.6-6.4 3.6z"/></svg>
+        </a>
+      </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>NOVA &mdash; Altus Schultz</span>
+      <a href="#top" class="back-to-top">Back to top &uarr;</a>
+      <div class="footer-egg-group">
+      <span>VFX &amp; Compositing</span>
+      <button class="egg-toggle" aria-label="I wonder what this does">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+      </svg>
+    </button>
+    </div>
+  </div>
+  </footer>
+
+<script src="../assets/js/script.js"></script>
+</body>
+</html>
